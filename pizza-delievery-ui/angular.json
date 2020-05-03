@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pizza-delievery-ui"
+    }
+  },
+  "defaultProject": "pizza-delievery-ui",
+  "cli": {
+    "analytics": "ed3a5319-e8ae-4a5e-a282-e13921cac2f1"
+  }
 }
