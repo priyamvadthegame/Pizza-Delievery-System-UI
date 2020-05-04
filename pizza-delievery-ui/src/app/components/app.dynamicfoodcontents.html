@@ -1,0 +1,41 @@
+
+<div class="container" >
+
+<div  class="row">
+    <!-- Card -->
+    <div  class="col-md-4" *ngFor="let food of foodList;">
+    <mdb-card> 
+        <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+          <!-- Card img -->
+          <mdb-card-img src="/assets/images/pizza.jpg" alt="Card image cap"></mdb-card-img>
+          <a>
+            <div class="mask"></div>
+          </a>
+        </div>
+        <!--Card content-->
+        <mdb-card-body class="typeprice">
+          <!--Title-->
+          <mdb-card-title>
+            <h4>{{food.foodName}}({{food.foodSize}})</h4>
+          </mdb-card-title>
+      
+          <!--Text-->
+          <mdb-card-text >
+              <div class="container-fluid">
+                  <div class="row ">
+                    
+                    <h4 class="col-md-4 col-sm-12  embed-responsive foodtypetag">{{food.foodType}}</h4>
+                    <h3 class="col-md-4 col-sm-12 ml-auto embed-responsive pricetag">&#x20b9;{{food.price}}</h3>
+              </div>
+              </div>
+          </mdb-card-text>
+      
+          <button mdbBtn (click)="addtocart(food)" color="primary" mdbWavesEffect>Add to Cart</button>
+          
+        </mdb-card-body>
+        
+      </mdb-card>
+      <br><br>
+    </div>
+  </div>
+</div>
