@@ -13,18 +13,18 @@ export class ProductService{
        .set('Content-type','application/json');
    }
    //deeptansu
-   getProducts(): Observable<Object>{
+   getFoodProducts(): Observable<Object>{
 
        return this._httpClient.get('http://localhost:9090/myapp/food',{headers:this.httpHeaders});
    }
-   addProducts(productObj): Observable<Object>{
+   addFoodProducts(productObj): Observable<Object>{
     
         return this._httpClient.post('http://localhost:9090/myapp/food',JSON.stringify(productObj),{headers:this.httpHeaders});
     }
-    updateProducts(id,productObj): Observable<Object>{
+    updateFoodProducts(id,productObj): Observable<Object>{
         return this._httpClient.put(`http://localhost:9090/myapp/food/${id}`,JSON.stringify(productObj),{headers:this.httpHeaders});
     }
-    deleteProducts(id):Observable<Object>{
+    deleteFoodProducts(id):Observable<Object>{
         return this._httpClient.delete('http://localhost:9090/myapp/food/${id}',{headers:this.httpHeaders});
     }
     //deeptansu
@@ -131,5 +131,21 @@ export class ProductService{
         return this._httpClient.get('http://localhost:9090/myapp/store/food/${id}',{headers:this.httpHeaders,params:{'foodId':foodId} } );
     }
     //subham prakash
+
+    //suraj
+
+    placeOrder(sessionId:string,cartId:string,orderJson)
+    {
+        return this._httpClient.post('http://localhost:9090/myapp/order/{cartId}',orderJson,{headers:this.httpHeaders.set('authToken',sessionId),params:{'cartId':cartId}});
+    }
+    getOrder(sessionId:string,cartId:string,orderJson)
+    {
+        return this._httpClient.post('http://localhost:9090/myapp/order/user',orderJson,{headers:this.httpHeaders.set('authToken',sessionId),params:{'cartId':cartId}});
+    }
+    filterOrderByStatus(sessionId:string,cartId:string,orderJson)
+    {
+        return this._httpClient.post('http://localhost:9090/myapp/order/user/{status}',orderJson,{headers:this.httpHeaders.set('authToken',sessionId),params:{'cartId':cartId}});
+    }
+    //suraj
 
 }
