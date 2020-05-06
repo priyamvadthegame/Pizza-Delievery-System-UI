@@ -74,7 +74,7 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                <label for="mobile"><h4>Mobile</h4></label>
-                                <input type="number" class="form-control" formControlName="mobile" minlength="10" maxlength="10" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
+                                <input type="text" class="form-control" formControlName="mobile" minlength="10" maxlength="10" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
                             </div>
                             <div *ngIf="userProfileForm.controls['mobile'].invalid && (userProfileForm.controls['mobile'].dirty || userProfileForm.controls['mobile'].touched)" class="alert alert-danger">
                                 <div *ngIf="userProfileForm.controls['mobile'].errors.required">
@@ -144,39 +144,14 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
-                               <label for="mobile"><h4>Pincode</h4></label>
-                                <input type="text" class="form-control" formControlName="pincode" minlength="4" id="pincode" placeholder="enter pincode" title="enter the pincode">
+                               <label for="pincode"><h4>Pincode</h4></label>
+                                <input type="text" class="form-control" formControlName="pincode" minlength="6" id="pincode" placeholder="enter pincode" title="enter the pincode">
                             </div>
                             <div *ngIf="userProfileForm.controls['pincode'].invalid && (userProfileForm.controls['pincode'].dirty || userProfileForm.controls['pincode'].touched)" class="alert alert-danger">
                                 <div *ngIf="userProfileForm.controls['pincode'].errors.required">
-                                Pincode is less than 4 numbers.
+                                Pincode is less than 6 numbers.
                               </div>
                             </div>
-                        </div>
-  
-                        <div class="form-group">
-                            
-                            <div class="col-xs-6">
-                                <label for="password"><h4>Password</h4></label>
-                                <input type="password" class="form-control" formControlName="password" id="password" placeholder="password" title="enter your password.">
-                            </div>
-                            <div *ngIf="userProfileForm.controls['password'].invalid && (userProfileForm.controls['password'].dirty || userProfileForm.controls['password'].touched)" class="alert alert-danger">
-                                <div *ngIf="userProfileForm.controls['password'].errors.required">
-                                Please enter the password.
-                              </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            
-                            <div class="col-xs-6">
-                              <label for="password2"><h4>Confirm Password</h4></label>
-                                <input type="password" class="form-control" formControlName="password2" id="password2" placeholder="Confirm password" title="enter your password2.">
-                            </div>
-                        </div>
-                        <div *ngIf="userProfileForm.controls['password2'].invalid && (userProfileForm.controls['password2'].dirty || userProfileForm.controls['password2'].touched)" class="alert alert-danger">
-                            <div *ngIf="userProfileForm.controls['password2'].errors.required">
-                            Please confirm the password.
-                          </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
@@ -190,7 +165,7 @@
                         <div class="form-group">
                              <div class="col-xs-12">
                                   <br>
-                                    <button class="btn btn-lg btn-success"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                    <button class="btn btn-lg btn-success" ><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
                                      <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                                      <br><br>
                               </div>
