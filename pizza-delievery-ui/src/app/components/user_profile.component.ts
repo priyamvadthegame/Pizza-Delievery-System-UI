@@ -23,10 +23,13 @@ export class UserProfleComponent{
             street:['',[Validators.required]],
             location:['',[Validators.required]],
             mobile: ['',[Validators.required],[Validators.minLength],[Validators.maxLength]],
+            password: ['',[Validators.required]],
+            password2: ['',[Validators.required]],
             gender:['']          
         });
     }
     onSubmit() {
         console.log(this.userProfileForm.value);
     }
+    ngOnInit(){}
 }
