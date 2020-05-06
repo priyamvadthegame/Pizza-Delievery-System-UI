@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { ProductService } from '../services/project.service';
 
 @Component({
     selector: 'user-profile',
@@ -8,7 +9,22 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 export class UserProfleComponent{
     public userProfileForm: FormGroup;
-    constructor (private formBuilder: FormBuilder){
+    public user: Object;
+    public loginStatus;
+    first_name:string;
+    last_name:string;
+    dob:Date;
+    email:string;
+    pincode:string;
+    city:string;
+    state:string;
+    street:string;
+    location:string;
+    mobile:string;
+    password:string;
+    password2:string;
+    gender:string;
+    constructor (private formBuilder: FormBuilder, private userService: ProductService){
         this.createForm();
     }
     createForm(){
@@ -31,5 +47,8 @@ export class UserProfleComponent{
     onSubmit() {
         console.log(this.userProfileForm.value);
     }
-    ngOnInit(){}
+    ngOnInit(){
+        this.userService.viewProfile(this.loginStatus).subscribe((user)=>{this.user
+            console.log(user)});
+    }
 }
