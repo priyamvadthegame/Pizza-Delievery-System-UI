@@ -23,18 +23,9 @@ export class UserProfleComponent{
             street:['',[Validators.required]],
             location:['',[Validators.required]],
             mobile: ['',[Validators.required],[Validators.minLength],[Validators.maxLength]],
-            password:['',[Validators.required]],
-            password2:['',[Validators.required]],
             gender:['']          
-        },{
-        validators:this.password.bind(this)
         });
     }
-    password(formGroup: FormGroup) {
-        const { value: password } = formGroup.get('password');
-        const { value: password2 } = formGroup.get('password2');
-        return password === password2 ? null : { passwordNotMatch: true };
-      }
     onSubmit() {
         console.log(this.userProfileForm.value);
     }
