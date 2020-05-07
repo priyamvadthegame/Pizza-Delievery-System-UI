@@ -1,0 +1,219 @@
+<head>
+    <title>User Profile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+  <div class="container bootstrap snippet" >
+      <div class="row">
+            <div class="col-sm-10"><h1>User Profile</h1></div>
+          <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="assets/images/single-pizza-pic.png"></a></div>
+      </div>
+      <div class="row">
+            <div class="col-sm-3"><!--left col-->
+                
+  
+        <div class="text-center">
+          <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+          <h6>Upload a different photo...</h6>
+          <input type="file" class="text-center center-block file-upload">
+        </div><br>          
+                 
+            <div class="panel panel-default">
+            </div>
+            
+          </div><!--/col-3-->
+          <div class="col-sm-9">
+              <ul class="nav nav-tabs">
+                  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                </ul>
+  
+                
+            <div class="tab-content">
+              <div class="tab-pane active" id="home">
+                
+                    <form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()" class="form" action="##" method="post">
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>First name</h4></label>
+                                <input type="text" class="form-control" formControlName="first_name" [(ngModel)]="first_name" minlength="3" id="first_name" placeholder="first name" title="enter your first name">
+                            </div>
+                            <div *ngIf="userProfileForm.controls['first_name'].invalid && (userProfileForm.controls['first_name'].dirty || userProfileForm.controls['first_name'].touched)" class="alert alert-danger">
+                              <div *ngIf="userProfileForm.controls['first_name'].hasError('required')">
+                                First Name is required.
+                              </div>
+                              <div *ngIf="userProfileForm.controls['first_name'].hasError('minlength')">
+                                First name is less than 3 characters.
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                              <label for="last_name"><h4>Last name</h4></label>
+                                <input type="text" class="form-control" formControlName="last_name" [(ngModel)]="last_name" minlength="3" id="last_name" placeholder="last name" title="enter your last name">
+                            </div>
+                            <div *ngIf="userProfileForm.controls['last_name'].invalid && (userProfileForm.controls['last_name'].dirty || userProfileForm.controls['last_name'].touched)" class="alert alert-danger">
+                              <div *ngIf="userProfileForm.controls['last_name'].hasError('required')">
+                                Last Name is required.
+                              </div>
+                              <div *ngIf="userProfileForm.controls['last_name'].hasError('minlength')">
+                                Last name is less than 3 characters.
+                              </div>
+                            </div>
+                        </div>
+  
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="dob"><h4>Date Of Birth</h4></label>
+                                <input type="date" class="form-control" formControlName="dob" [(ngModel)]="dob" id="dob" placeholder="enter date of birth" title="enter your date of birth">
+                            </div>
+                            <div *ngIf="userProfileForm.controls['dob'].invalid && (userProfileForm.controls['dob'].dirty || userProfileForm.controls['dob'].touched)" class="alert alert-danger">
+                              <div *ngIf="userProfileForm.controls['dob'].hasError('required')">
+                                Date Of Birth is required.
+                              </div>
+                            </div>
+                        </div>
+          
+            
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                               <label for="mobile"><h4>Mobile</h4></label>
+                                <input type="text" class="form-control" formControlName="mobile" [(ngModel)]="mobile" minlength="10" maxlength="10" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
+                            </div>
+                            <div *ngIf="userProfileForm.controls['mobile'].invalid && (userProfileForm.controls['mobile'].dirty || userProfileForm.controls['mobile'].touched)" class="alert alert-danger">
+                                <div *ngIf="userProfileForm.controls['mobile'].hasError('required')">
+                                Mobile number is required.
+                              </div>
+                              <div *ngIf="userProfileForm.controls['mobile'].hasError('minlength')">
+                                Mobile number should be 10 characters.
+                              </div>
+                              <div *ngIf="userProfileForm.controls['mobile'].hasError('maxlength')">
+                                Mobile number should be 10 characters.
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Email</h4></label>
+                                <input type="email" class="form-control" formControlName="email" id="email" [(ngModel)]="email" placeholder="you@email.com" title="enter your email.">
+                            </div>
+                            <div *ngIf="userProfileForm.controls['email'].invalid && (userProfileForm.controls['email'].dirty || userProfileForm.controls['email'].touched)" class="alert alert-danger">
+                                <div *ngIf="userProfileForm.controls['email'].hasError('required')">
+                                Email is required.
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="location"><h4>Location</h4></label>
+                                <input type="text" class="form-control" formControlName="location" [(ngModel)]="location" id="location" placeholder="Location" title="enter the location">
+                            </div>
+                            <div *ngIf="userProfileForm.controls['location'].invalid && (userProfileForm.controls['location'].dirty || userProfileForm.controls['location'].touched)" class="alert alert-danger">
+                                <div *ngIf="userProfileForm.controls['location'].hasError('required')">
+                                Location is required.
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="street"><h4>Street</h4></label>
+                                <input type="text" class="form-control" formControlName="street" [(ngModel)]="street" id="street" placeholder="Street" title="enter street">
+                            </div>
+                            <div *ngIf="userProfileForm.controls['street'].invalid && (userProfileForm.controls['street'].dirty || userProfileForm.controls['street'].touched)" class="alert alert-danger">
+                                <div *ngIf="userProfileForm.controls['street'].hasError('required')">
+                                Street is required.
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="city"><h4>City</h4></label>
+                                <input type="text" class="form-control" formControlName="city" [(ngModel)]="city" id="city" placeholder="City" title="enter city">
+                            </div>
+                            <div *ngIf="userProfileForm.controls['city'].invalid && (userProfileForm.controls['city'].dirty || userProfileForm.controls['city'].touched)" class="alert alert-danger">
+                                <div *ngIf="userProfileForm.controls['city'].hasError('required')">
+                                City is required.
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="state"><h4>State</h4></label>
+                                <input type="text" class="form-control" formControlName="state" [(ngModel)]="state" id="state" placeholder="State" title="enter state">
+                            </div>
+                            <div *ngIf="userProfileForm.controls['state'].invalid && (userProfileForm.controls['state'].dirty || userProfileForm.controls['state'].touched)" class="alert alert-danger">
+                                <div *ngIf="userProfileForm.controls['state'].hasError('required')">
+                                State is required.
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                               <label for="pincode"><h4>Pincode</h4></label>
+                                <input type="text" class="form-control" formControlName="pincode" [(ngModel)]="pincode" minlength="6" id="pincode" placeholder="enter pincode" title="enter the pincode">
+                            </div>
+                            <div *ngIf="userProfileForm.controls['pincode'].invalid && (userProfileForm.controls['pincode'].dirty || userProfileForm.controls['pincode'].touched)" class="alert alert-danger">
+                                <div *ngIf="userProfileForm.controls['pincode'].hasError('required')">
+                                Pincode is required.
+                              </div>
+                              <div *ngIf="userProfileForm.controls['pincode'].hasError('minlength')">
+                                Pincode should be 6 characters.
+                              </div>
+                            </div>
+                        </div>
+  
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="password"><h4>Password</h4></label>
+                                <input type="password" class="form-control" formControlName="password" [(ngModel)]="password" id="password" placeholder="password" title="enter your password.">
+                            </div>
+                            <div *ngIf="userProfileForm.controls['password'].invalid && (userProfileForm.controls['password'].dirty || userProfileForm.controls['password'].touched)" class="alert alert-danger">
+                                <div *ngIf="userProfileForm.controls['password'].hasError('required')">
+                                Please enter the password.
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                              <label for="password2"><h4>Confirm Password</h4></label>
+                                <input type="password" class="form-control" formControlName="password2" [(ngModel)]="password2" id="password2" placeholder="Confirm password" title="enter your password2.">
+                            </div>
+                        </div>
+                        <div *ngIf="userProfileForm.controls['password2'].invalid && (userProfileForm.controls['password2'].dirty || userProfileForm.controls['password2'].touched)" class="alert alert-danger">
+                            <div *ngIf="userProfileForm.controls['password2'].hasError('required')">
+                            Please confirm the password.
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                            <label for="gender"><h4>Gender</h4></label>
+                                <select class="form-control" formControlName="gender" id="gender" [(ngModel)]="gender" placeholder="Select Gender">
+                                  <option>Male</option>
+                                  <option>Female</option>
+                              </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                             <div class="col-xs-12">
+                                  <br>
+                                    <button class="btn btn-lg btn-success" ><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                     <br><br>
+                              </div>
+                        </div>
+                    </form>
+                
+               </div><!--/tab-pane-->
+               
+            </div><!--/tab-content-->
+  
+          </div><!--/col-9-->
+      </div><!--/row-->
