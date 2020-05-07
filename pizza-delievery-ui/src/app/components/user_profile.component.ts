@@ -9,7 +9,8 @@ import { ProductService } from '../services/project.service';
 
 export class UserProfleComponent{
     public userProfileForm: FormGroup;
-    public user: Object;
+    public user;
+    public userUpdate;
     public loginStatus;
     first_name:string;
     last_name:string;
@@ -26,29 +27,43 @@ export class UserProfleComponent{
     gender:string;
     constructor (private formBuilder: FormBuilder, private userService: ProductService){
         this.createForm();
+        this.userService.viewProfile(this.loginStatus);
     }
     createForm(){
         this.userProfileForm=this.formBuilder.group({
-            first_name: ['',[Validators.required],[Validators.minLength]],
-            last_name: ['',[Validators.required],[Validators.minLength]],
-            dob: ['',[Validators.required]],
-            email:['',[Validators.required]],
-            pincode:['',[Validators.required],[Validators.minLength]],
-            city:['',[Validators.required]],
-            state:['',[Validators.required]],
-            street:['',[Validators.required]],
-            location:['',[Validators.required]],
-            mobile: ['',[Validators.required],[Validators.minLength],[Validators.maxLength]],
-            password: ['',[Validators.required]],
-            password2: ['',[Validators.required]],
-            gender:['']          
+            first_name: [null,[Validators.required,Validators.minLength]],
+            last_name: [null,[Validators.required,Validators.minLength]],
+            dob: [null,[Validators.required]],
+            email:[null,[Validators.required]],
+            pincode:[null,[Validators.required,Validators.minLength]],
+            city:[null,[Validators.required]],
+            state:[null,[Validators.required]],
+            street:[null,[Validators.required]],
+            location:[null,[Validators.required]],
+            mobile: [null,[Validators.required, Validators.minLength, Validators.maxLength]],
+            password: [null,[Validators.required]],
+            password2: [null,[Validators.required]],
+            gender:[null]          
         });
     }
     onSubmit() {
         console.log(this.userProfileForm.value);
     }
     ngOnInit(){
-        this.userService.viewProfile(this.loginStatus).subscribe((user)=>{this.user
-            console.log(user)});
+        this.userService.viewProfile("a@123").subscribe((user)=>{this.user=user;this.Init()});
+    }
+    Init(){
+        console.log(this.user);
+        this.first_name=this.user.firstname;
+        this.last_name=this.user.lastname;
+        this.dob=this.user.dob;
+        this.gender=this.user.gender;
+        this.email=this.user.emailId;
+        this.location=this.user.location;
+        this.street=this.user.street;
+        this.state=this.user.state;
+        this.mobile=this.user.mobileno;
+        this.city=this.user.city;
+        this.pincode=this.user.pincode;
     }
 }
