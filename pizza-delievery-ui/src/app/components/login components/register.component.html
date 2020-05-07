@@ -1,0 +1,178 @@
+
+<div class="container-fluid background" >
+      <div class="row">
+          <div class="col-md-2 col-sm-2 col-xs-12"></div>
+          <div class="col-md-8 col-sm-8 col-xs-12" align="center">
+              <form #RegForm="ngForm" (ngSubmit)="onSubmit()" class="form" id="log" novalidate>
+                  <h1>Register</h1>
+                  <img class="img img-responsive" src="/assets/images/undraw_pizza_sharing_wxop.svg">
+                   <div class="form-group">
+                        
+                            <label for="Firstname"><h4>First Name</h4></label>
+                            <input type="text" class="form-control" name="Firstname" required #Firstname #FirstnameModelRef="ngModel" id="Firstname" placeholder="First Name" ngModel>
+                            <div *ngIf="FirstnameModelRef.errors && FirstnameModelRef.touched" class="alert alert-danger">
+                                <div [hidden]="!FirstnameModelRef.errors.required" class="alert alert-danger">
+                                  Please enter Firstname
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="form-group">
+                        
+                       
+                          <label for="Lastname"><h4>Last Name</h4></label>
+                            <input type="text" class="form-control" name="Lastname" required #Lastname #LastnameModelRef="ngModel" id="Lastname" placeholder="Last Name" ngModel>
+                            <div *ngIf="LastnameModelRef.errors && LastnameModelRef.touched" class="alert alert-danger">
+                                <div [hidden]="!LastnameModelRef.errors.required" class="alert alert-danger">
+                                  Please enter Lastname
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        
+                        
+                            <label for="Dob"><h4>Date Of Birth</h4></label>
+                            <input type="date" class="form-control" name="Dob" required #Dob #DobModelRef="ngModel" id="Dob" placeholder="Date Of Birth" ngModel>
+                            <div *ngIf="DobModelRef.errors && DobModelRef.touched" class="alert alert-danger">
+                                <div [hidden]="!DobModelRef.errors.required" class="alert alert-danger">
+                                  Please enter Date of birth
+                                </div>
+                            </div>
+                    </div>
+                     <div class="form-group">
+                        
+                        <label for="Gender"><h4>Gender</h4></label>
+                            <select class="form-control" id="Gender">
+                              <option>Male</option>
+                              <option>Female</option>
+                          </select>
+                      
+                    </div>
+                    <div class="form-group">
+                        
+                        
+                            <label for="Street"><h4>Street</h4></label>
+                            <input type="text" class="form-control" name="Street" required #Street #StreetModelRef="ngModel" id="Street" placeholder="Street" ngModel>
+                            <div *ngIf="StreetModelRef.errors && StreetModelRef.touched" class="alert alert-danger">
+                                <div [hidden]="!StreetModelRef.errors.required" class="alert alert-danger">
+                                  Please enter Street
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">    
+                        
+                            <label for="Location"><h4>Location</h4></label>
+                            <input type="text" class="form-control" name="Location" required #Location #LocationModelRef="ngModel" id="Location" placeholder="Location" ngModel>
+                            <div *ngIf="LocationModelRef.errors && LocationModelRef.touched" class="alert alert-danger">
+                                <div [hidden]="!LocationModelRef.errors.required" class="alert alert-danger">
+                                  Please enter Location
+                                </div>
+                            </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        
+                        
+                            <label for="City"><h4>City</h4></label>
+                            <input type="text" class="form-control" name="City" required #City #CityModelRef="ngModel" id="City" placeholder="City" ngModel>
+                            <div *ngIf="CityModelRef.errors && CityModelRef.touched" class="alert alert-danger">
+                                <div [hidden]="!CityModelRef.errors.required" class="alert alert-danger">
+                                  Please enter City
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        
+        
+                            <label for="State"><h4>State</h4></label>
+                            <input type="text" class="form-control" name="State" required #State #StateModelRef="ngModel" id="State" placeholder="State" ngModel>
+                            <div *ngIf="StateModelRef.errors && StateModelRef.touched" class="alert alert-danger">
+                                <div [hidden]="!StateModelRef.errors.required" class="alert alert-danger">
+                                  Please enter State
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        
+                           <label for="Pincode"><h4>Pincode</h4></label>
+                            <input type="text" class="form-control" name="Pincode" required #Pincode #PincodeModelRef="ngModel" id="Pincode" placeholder="Pincode" ngModel>
+                            <div *ngIf="PincodeModelRef.errors && PincodeModelRef.touched" class="alert alert-danger">
+                                <div [hidden]="!PincodeModelRef.errors.required" class="alert alert-danger">
+                                  Please enter Pincode
+                                </div>
+                            </div>
+                       
+                    </div>
+                    <div class="form-group">
+                       
+                           <label for="Mobile"><h4>Mobile Number</h4></label>
+                            <input type="text" class="form-control" name="Mobile" required #Mobile #MobileModelRef="ngModel" id="Mobile" placeholder="Mobile Number" ngModel>
+                            <div *ngIf="MobileModelRef.errors && MobileModelRef.touched" class="alert alert-danger">
+                                <div [hidden]="!MobileModelRef.errors.required" class="alert alert-danger">
+                                  Please enter Mobile no
+                                </div>
+                            </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        
+                        
+                            <label for="Email"><h4>Email</h4></label>
+                            <input type="email" class="form-control" name="Email" required #Email #EmailModelRef="ngModel" id="Email" placeholder="Email" ngModel>
+                            <div *ngIf="EmailModelRef.errors && EmailModelRef.touched" class="alert alert-danger">
+                                <div [hidden]="!EmailModelRef.errors.required" class="alert alert-danger">
+                                  Please enter Email id
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        
+                            <label for="Username"><h4>User Name</h4></label>
+                            <input type="text" class="form-control" name="Username" required minlength="6" #Username #UsernameModelRef="ngModel" id="Username" placeholder="User Name" ngModel>
+                            <div *ngIf="UsernameModelRef.errors && UsernameModelRef.touched" class="alert alert-danger">
+                                <div [hidden]="!UsernameModelRef.errors.required" class="alert alert-danger">
+                                  Please enter Username
+                                </div>
+                                <div [hidden]="!UsernameModelRef.errors.minlength" class="alert alert-danger">
+                                  Username must have atleast 8 characters              
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        
+                            <label for="Password"><h4>Password</h4></label>
+                            <input type="password" class="form-control" name="Password" required minlength="8" #Password #PasswordModelRef="ngModel" id="Password" placeholder="Password" ngModel>
+                            <div *ngIf="PasswordModelRef.errors && PasswordModelRef.touched" class="alert alert-danger">
+                                <div [hidden]="!PasswordModelRef.errors.required" class="alert alert-danger">
+                                  Please enter Username
+                                </div>
+                                <div [hidden]="!PasswordModelRef.errors.minlength" class="alert alert-danger">
+                                  Password must have atleast 8 characters              
+                                </div>
+                            </div>
+                       
+                    </div>
+                    <div class="form-group">
+                        
+                        <label for="Usertype"><h4>Usertype</h4></label>
+                            <select class="form-control" id="Usertype">
+                              <option>C</option>
+                          </select>
+                     
+                    </div>
+                   
+                  <div class="form-group">
+                      <button [disabled]="!RegForm.form.valid" type="submit" class="btn btn-success">Register</button>
+                  </div>
+                  <div class="btn-group" style="align-self: center;">
+                      <div id="para"><p>Already Registered? <a href="login.html" class="btn1">Sign In Here</a></p></div> 
+                  </div>
+              </form>
+          </div>
+           <div class="col-md-2 col-sm-2 col-xs-12"></div>
+
+      </div>
+      
+</div>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pizza order</title>
+  </head>
+  <body>
+    <div class="container-fluid" >
+      <div class="row price"  align="center">
+          <h1>Total Price : &#x20b9; </h1>
+      </div>
+      <div class="row" >
+        <div class="col-md-4 col-xs-12 orderform" >
+                
+      <form #order="ngForm" (ngSubmit)="onSubmit(order.value)" novalidate >
+         
+        <h3 class="panel-title" align="center">
+                        Address Details
+        </h3>
+
+        <div class="form-group">
+        <p>Street</p>
+        <input type="text" class="form-control" name="Street" placeholder="Enter your Street" required #street #streetModelRef="ngModel" ngModel/>
+        <div *ngIf="streetModelRef.errors && streetModelRef.touched" class="alert alert-danger">
+          <div [hidden]="!streetModelRef.errors.required" class="alert alert-danger">Please Enter Street.</div>
+      </div> 
+      </div>
+
+        <div class="form-group">
+          <p>Location</p>
+          <input type="text" class="form-control" name="Location" placeholder="Enter your Location" required #location #locationModelRef="ngModel" ngModel/>
+          <div *ngIf="locationModelRef.errors && locationModelRef.touched" class="alert alert-danger">
+            <div [hidden]="!locationModelRef.errors.required" class="alert alert-danger">Please Enter Location.</div>
+        </div> 
+        </div>
+        <div class="form-group">
+          <p>City</p>
+          <input type="text"  class="form-control" name="City"  placeholder="Enter your city" required #city #cityModelRef="ngModel" ngModel/>
+          <div *ngIf="cityModelRef.errors && cityModelRef.touched" class="alert alert-danger">
+            <div [hidden]="!cityModelRef.errors.required" class="alert alert-danger">Please Enter City.</div>
+        </div>
+        </div>
+        <div class="form-group">
+          <p>State</p>
+          <input type="text" class="form-control" name="State" placeholder="Enter your State" required #state #stateModelRef="ngModel" ngModel/>
+          <div *ngIf="stateModelRef.errors && stateModelRef.touched" class="alert alert-danger">
+            <div [hidden]="!stateModelRef.errors.required" class="alert alert-danger">Please Enter State.</div>
+        </div>
+        </div>
+        
+        <div class="form-group" [class.has-error]="PincodeModelRef.invalid && PincodeModelRef.touched">
+          <p>Pincode</p>
+          <input type="text" class="form-control" name="Pincode"  pattern="^(0|[1-9][0-9]*)" title="pincode should be numeric." required minlength="6" maxlength="6" #Pincode #PincodeModelRef="ngModel" placeholder="Enter your Pincode" ngModel/>
+          <div *ngIf="PincodeModelRef.errors && PincodeModelRef.touched" class="alert alert-danger">
+            <div [hidden]="!PincodeModelRef.errors.required" class="alert alert-danger">Please Enter Pincode</div>
+           <div [hidden]="!PincodeModelRef.errors.minlength" class="alert alert-danger">Pincode must be of 6 digits.</div>
+           <span class="help-block" *ngIf="PincodeModelRef.invalid && PincodeModelRef.touched">
+            Pincode is not valid.
+          </span>
+        </div>
+        
+        </div>
+
+        <div class="form-group" [class.has-error]="mobileNoModelRef.invalid && mobileNoModelRef.touched">
+          <p>Mobile Number</p>
+          <input type="text" class="form-control" name="Mobile number" pattern="^(0|[1-9][0-9]*)" title="Phone Number should be numeric." required minlength="10" maxlength="10" placeholder="Enter your Mobile " required  #mobileNo #mobileNoModelRef="ngModel" ngModel/>
+          <div *ngIf="mobileNoModelRef.errors && mobileNoModelRef.touched" class="alert alert-danger">
+          <div [hidden]="!mobileNoModelRef.errors.required" class="alert alert-danger">Please Enter Mobile.</div>
+          <div [hidden]="!mobileNoModelRef.errors.minlength" class="alert alert-danger">Mobile Number must be of 10 digits.</div>
+          <span class="help-block" *ngIf="mobileNoModelRef.invalid && mobileNoModelRef.touched">
+            Mobile Number is not valid.
+          </span>
+        </div>
+        </div>
+
+         <div class="btn-block">
+          <button [disabled]="!order.form.valid" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+        </form>
+        </div>
+      
+       
+     
+   
+        
+      <div class="col-xs-12 col-md-4  ">
+          <form #payment="ngForm" (ngSubmit)="onSubmitForPayment(payment.value)" novalidate >
+         
+            <h3 class="panel-title" align="center">
+                            Payment Details
+                        </h3>
+      <div class="form-group" [class.has-error]="CardNumberModelRef.invalid && CardNumberModelRef.touched">
+          <p>Card Number</p>
+          <input type="text" class="form-control" name="cardNumber"  pattern="^(0|[1-9][0-9]*)" title="Card Number should be numeric." required minlength="12" maxlength="12" #CardNumber #CardNumberModelRef="ngModel" placeholder="Enter your Card Number" ngModel/>
+          <div *ngIf="CardNumberModelRef.errors && CardNumberModelRef.touched" class="alert alert-danger">
+            <div [hidden]="!CardNumberModelRef.errors.required" class="alert alert-danger">Please Enter Card Number</div>
+           <div [hidden]="!CardNumberModelRef.errors.minlength" class="alert alert-danger">Card Number must be of 12 digits.</div>
+           <span class="help-block" *ngIf="CardNumberModelRef.invalid && CardNumberModelRef.touched">
+            Card Number is not valid.
+          </span>
+          </div>
+      </div>
+
+      <div class="form-group"  [class.has-error]="ExpiryMonthModelRef.invalid && ExpiryMonthModelRef.touched && ExpiryYearModelRef.invalid && ExpiryYearModelRef.touched">
+          <p>Expiry Date</p>
+          <input type="text" class="form-control" name="ExpiryMonth"  pattern="^(0[1-9]|1[0-2])" title="Expiry Date should be numeric." required  maxlength="2" #ExpiryMonth #ExpiryMonthModelRef="ngModel" placeholder="MM" ngModel/>
+        <div *ngIf="ExpiryMonthModelRef.errors && ExpiryMonthModelRef.touched" class="alert alert-danger">
+            <div [hidden]="!ExpiryMonthModelRef.errors.required" class="alert alert-danger">Please Enter Expiry Month</div>
+           <div [hidden]="!ExpiryMonthModelRef.errors.minlength" class="alert alert-danger">Expiry Month must be of less than 2 digits.</div>
+           <span class="help-block" *ngIf="ExpiryMonthModelRef.invalid && ExpiryMonthModelRef.touched">
+            Expiry Month is not valid.
+          </span>
+          </div>
+           <input type="text" class="form-control" name="ExpiryYear"  pattern="^(0|[1-9][0-9]*)" title="Expiry Date should be numeric." required  maxlength="4" minlength="4" #ExpiryYear #ExpiryYearModelRef="ngModel" placeholder="YYYY" ngModel/>
+          <div *ngIf="ExpiryYearModelRef.errors && ExpiryYearModelRef.touched" class="alert alert-danger">
+            <div [hidden]="!ExpiryYearModelRef.errors.required" class="alert alert-danger">Please Enter Card Number</div>
+           <div [hidden]="!ExpiryYearModelRef.errors.minlength" class="alert alert-danger">Expiry year must be of 4 digits.</div>
+           <span class="help-block" *ngIf="ExpiryYearModelRef.invalid && ExpiryYearModelRef.touched">
+            Expiry year is not valid.
+          </span>
+          </div>
+      </div>
+          
+     
+            
+            <div class="btn-block">
+              <button [disabled]="!payment.form.valid" type="submit" class="btn btn-primary">Pay & Place Order</button>
+            </div>
+          </form>
+      </div>

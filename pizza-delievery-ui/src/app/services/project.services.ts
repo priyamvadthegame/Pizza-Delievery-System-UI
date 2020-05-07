@@ -3,6 +3,8 @@ import{HttpClient,HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
+
+
 @Injectable()
 export class ProductService{
     public httpHeaders:HttpHeaders;
@@ -128,15 +130,23 @@ export class ProductService{
     }
 
     filterStoreByFood(foodId): Observable<Object>{
-        return this._httpClient.get('http://localhost:9090/myapp/store/food/${id}',{headers:this.httpHeaders,params:{'foodId':foodId} } );
+        return this._httpClient.get(`http://localhost:9090/myapp/store/food/${foodId}`,{headers:this.httpHeaders} );
     }
     //subham prakash
 
     //suraj
 
-    placeOrder(sessionId:string,cartId:string,orderJson)
-    {
-        return this._httpClient.post('http://localhost:9090/myapp/order/{cartId}',orderJson,{headers:this.httpHeaders.set('authToken',sessionId),params:{'cartId':cartId}});
+    placeOrder(sessionId:string,orderJson:Object)
+    {  // let foodArray:Array<string>;
+        //let cartList=JSON.parse(localStorage.getItem("cartList"))
+        //let totalPrice;
+        //cartList.forEach(element => {
+           // foodArray.push(element.foodId);
+           // totalPrice+=Number(element.price);
+       // });
+       let foodsList:Array<string>=[];
+       foodsList.push("1");
+        return this._httpClient.post('http://localhost:9090/myapp/food/order',JSON.stringify(orderJson),{headers:this.httpHeaders.set('authToken',sessionId),params:{'foods':["1","2"],'totalprice':"500",'storeId':"5"}});
     }
     getOrder(sessionId:string,cartId:string,orderJson)
     {

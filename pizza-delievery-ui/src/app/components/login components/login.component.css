@@ -1,0 +1,37 @@
+.background
+{
+	background:url("../../../assets/images/pizzajust-pizzajust-awesome.-wallpaper_.jpg");
+	height: 110vh;
+	background-size: cover;
+	background-position: center;
+}
+#log{
+	border: 2px solid white;
+	padding: 60px 40px;
+	margin-top: 80px;
+	background-color: black;
+
+}
+img{
+	width: 90px;
+	height: 80px;
+}
+h1{
+	color: white;
+	text-align: center;
+	font-weight: bolder;
+	margin-top: -20px;
+}
+label{
+	font-size:20px;
+	color: white;
+}
+.row
+{
+	padding-top: 50px;
+}
+#para
+{
+	color: white;
+
+}

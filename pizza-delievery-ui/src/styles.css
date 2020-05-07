@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+
+  .navbar-inverse {
+    background-color: #222;
+    border-color: #080808;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
