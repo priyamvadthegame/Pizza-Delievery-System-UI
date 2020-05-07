@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import {ProductService} from '../../services/project.services'
+import {ProductService} from '../services/project.services'
 @Component({
   selector: 'test',
-  template: 'orderAndPayment.component.html',
-  styleUrls:['orderAndPayment.component.css'],
+  template: '<h1>{{testData | async | json}}</h1>',
   providers: [ProductService]
 })
 export class TestComponent {

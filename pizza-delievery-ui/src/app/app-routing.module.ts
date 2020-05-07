@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {LoginComponent} from "./components/login components/login.component"
 import {RegisterComponent} from "./components/login components/registercomponent"
 import {UserProfleComponent} from "./components/profile_components/app.profile"
-import {OrderComponent} from './components/order component/orderAndPayment.component'
+import {orderAndPayment} from './components/order component/orderAndPayment.component'
 const routes: Routes = [{
   path: '',
   redirectTo:"homepage",
@@ -35,7 +35,7 @@ const routes: Routes = [{
 },
 {
   path:'order',
-  component:OrderComponent
+  component:orderAndPayment
 }];
 
 @NgModule({

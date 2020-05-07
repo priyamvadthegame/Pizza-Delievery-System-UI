@@ -14,13 +14,14 @@ import {LoginComponent} from "./components/login components/login.component"
 import {RegisterComponent} from "./components/login components/registercomponent"
 import {UserProfleComponent} from "./components/profile_components/app.profile"
 import { ReactiveFormsModule } from '@angular/forms'
-import {OrderComponent} from './components/order component/orderAndPayment.component'
+import {orderAndPayment} from './components/order component/orderAndPayment.component'
+import {FilterDetails} from './pipes/credicarPipe'
 @NgModule({
   declarations:[
     AppComponent,TestComponent,
     CartComponent,LoginComponent,
     RegisterComponent,UserProfleComponent,
-    OrderComponent
+    orderAndPayment,FilterDetails
   ],
   imports: [
     BrowserModule,
@@ -28,6 +29,7 @@ import {OrderComponent} from './components/order component/orderAndPayment.compo
     FormsModule,
      ReactiveFormsModule,
     CommonModule,
+    
     MDBBootstrapModule.forRoot(),
     NotifierModule.withConfig({
       position: {
