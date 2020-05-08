@@ -146,7 +146,7 @@ export class ProductService{
        // });
        let foodsList:Array<string>=[];
        foodsList.push("1");
-        return this._httpClient.post('http://localhost:9090/myapp/food/order',JSON.stringify(orderJson),{headers:this.httpHeaders.set('authToken',sessionId),params:{'foods':foodArray,'totalprice':totalPrice,'storeId':"5"}});
+        return this._httpClient.post('http://localhost:9090/myapp/food/order',JSON.stringify(orderJson),{headers:this.httpHeaders.set('authToken',sessionId),params:{'foods':foodArray,'totalprice':totalPrice,'storeId':"54"}});
     }
     getOrder(sessionId:string,cartId:string,orderJson)
     {

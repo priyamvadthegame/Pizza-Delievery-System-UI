@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService } from "../../services/project.services";
 import { NotifierService } from "angular-notifier";
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 @Component({
 selector: 'orderAndPayment',
 templateUrl:'./orderAndPayment.component.html',
@@ -20,7 +20,7 @@ export class orderAndPayment implements OnInit{
   totalPrice;
   rememberMe=false;
   OrderDetails
-  constructor( private productService:ProductService,private route:ActivatedRoute,private notifier:NotifierService){
+  constructor( private productService:ProductService,private route:ActivatedRoute,private notifier:NotifierService,private router:Router){
     this.getCreditCardNumber();
   }
   onSubmit(order:any){
@@ -34,60 +34,103 @@ export class orderAndPayment implements OnInit{
     
   }
   onSubmitForPayment(payment:any){
-    
     console.log()
     console.log(this.ccNumber)
-    const index=this.creditCardList.findIndex(credit=>String(credit.creditCardNumber)===String(this.ccNumber))
-    console.log(index)
-      if(index===-1)  
+    if(this.rememberMe===false)
+    {
+        const index=this.creditCardList.findIndex(credit=>String(credit.creditCardNumber)===String(this.ccNumber))
+      console.log(index)
+        if(index===-1)  
+        {
+          this.notifier.notify("error","Incorect credit card number");
+          return;
+        }
+        else{
+        let foodArray:Array<string>=[];
+      for (let i = 0; i < localStorage.length; i++){
+        let key = localStorage.key(i);
+        let cartlist=JSON.parse(localStorage.getItem("cartList"));
+        if(key!="cartList")
+        {  const index = cartlist.findIndex(cart=> cart.name===key);
+          console.log(index)
+          foodArray.push(cartlist[index].foodId);
+        }
+      
+      }
+      let Order={ orderStatus:"Pending",
+    
+      Street:this.OrderDetails.Street,
+      
+      city:this.OrderDetails.City,
+      
+      state:this.OrderDetails.State,
+      
+      pincode:this.OrderDetails.Pincode,
+      
+      mobileNo:Number(this.OrderDetails.MobileNumber)
+      }
+    this.productService.placeOrder(sessionStorage.getItem("sessionId"),Order,foodArray,this.totalPrice).subscribe(result=>{console.log(result); 
+      let jsonfile=JSON.parse(JSON.stringify(result));
+      if((jsonfile.city)==="")
       {
-        this.notifier.notify("error","Incorect credit card number");
+        this.notifier.notify("info", jsonfile.orderStatus);
       }
       else{
-        if(this.rememberMe===true)
-        {
-      let creditCard={
-           creditCardNumber: this.ccNumber,
-           validTo:`${this.emNumber}/${this.eyNumber}`,
-            balance:5000
-        }
-    
-        this.productService.addCreditCard(creditCard,sessionStorage.getItem("sessionId")).subscribe( reaponse =>console.log(reaponse));
-    }
-    let foodArray:Array<string>=[];
-    for (let i = 0; i < localStorage.length; i++){
-      let key = localStorage.key(i);
-      let cartlist=JSON.parse(localStorage.getItem("cartList"));
-      if(key!="cartList")
-      {  const index = cartlist.findIndex(cart=> cart.name===key);
-        console.log(index)
-        foodArray.push(cartlist[index].foodId);
+        this.notifier.notify("success","Order Placed Successfully");
+        this.emptyLocalStorage();
+        this.router.navigateByUrl("/homepage");
+         
       }
-     
-    }
-    let Order={ orderStatus:"Pending",
-	
-    Street:this.OrderDetails.Street,
-    
-    city:this.OrderDetails.City,
-    
-    state:this.OrderDetails.State,
-    
-    pincode:this.OrderDetails.Pincode,
-    
-    mobileNo:Number(this.OrderDetails.MobileNumber)
-    }
-   this.productService.placeOrder(sessionStorage.getItem("sessionId"),Order,foodArray,this.totalPrice).subscribe(result=>{console.log(result); 
-    let jsonfile=JSON.parse(JSON.stringify(result));
-    if((jsonfile.city)==="")
-    {
-      this.notifier.notify("info", jsonfile.orderStatus);
-    }
-    else{
-      this.notifier.notify("success","Order Placed Successfully");
-    }
-    this.emptyLocalStorage()});
+      
+    })
   }
+} 
+    else{
+      let creditCard={
+        creditCardNumber: this.ccNumber,
+        validTo:`${this.emNumber}/${this.eyNumber}`,
+          balance:5000
+      };
+  
+      this.productService.addCreditCard(creditCard,sessionStorage.getItem("sessionId")).subscribe( reaponse =>console.log(reaponse));
+      let foodArray:Array<string>=[];
+      for (let i = 0; i < localStorage.length; i++){
+        let key = localStorage.key(i);
+        let cartlist=JSON.parse(localStorage.getItem("cartList"));
+        if(key!="cartList")
+        {  const index = cartlist.findIndex(cart=> cart.name===key);
+          console.log(index)
+          foodArray.push(cartlist[index].foodId);
+        }
+      
+      }
+      let Order={ orderStatus:"Pending",
+    
+      Street:this.OrderDetails.Street,
+      
+      city:this.OrderDetails.City,
+      
+      state:this.OrderDetails.State,
+      
+      pincode:this.OrderDetails.Pincode,
+      
+      mobileNo:Number(this.OrderDetails.MobileNumber)
+      }
+    this.productService.placeOrder(sessionStorage.getItem("sessionId"),Order,foodArray,this.totalPrice).subscribe(result=>{console.log(result); 
+      let jsonfile=JSON.parse(JSON.stringify(result));
+      if((jsonfile.city)==="")
+      {
+        this.notifier.notify("info", jsonfile.orderStatus);
+      }
+      else{
+        this.notifier.notify("success","Order Placed Successfully");
+        this.emptyLocalStorage()
+        this.router.navigateByUrl("/homepage");
+      }
+     });
+
+
+    }
 
   }
 
