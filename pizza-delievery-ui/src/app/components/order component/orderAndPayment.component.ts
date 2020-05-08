@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ProductService } from "../../services/project.services";
-import {FilterDetails} from './../../pipes/credicarPipe'
+import { NotifierService } from "angular-notifier";
+import { ActivatedRoute } from '@angular/router'
 @Component({
 selector: 'orderAndPayment',
 templateUrl:'./orderAndPayment.component.html',
 styleUrls:['./orderAndPayment.component.css'],
 providers:[ProductService]
 })
-export class orderAndPayment{
+export class orderAndPayment implements OnInit{
   creditCardList;
   submitAddress:boolean=false;
   checked: boolean=true;
@@ -16,32 +17,81 @@ export class orderAndPayment{
   emNumber;
   eyNumber;
   select;
-
-
-  constructor( private productService:ProductService){
+  totalPrice;
+  rememberMe=false;
+  OrderDetails
+  constructor( private productService:ProductService,private route:ActivatedRoute,private notifier:NotifierService){
     this.getCreditCardNumber();
   }
   onSubmit(order:any){
     this.submitAddress=true;
+    this.OrderDetails=order;
       console.log('order:',order );
   }
-  handleRemember(  creditCardObj)
+  handleRemember(creditCardObj)
   {
+    this.rememberMe=!this.rememberMe;
     
-    let creditCard={
-      creditCardNumber: this.ccNumber,
-      validTo:`${this.emNumber}/${this.eyNumber}`
-    }
-    console.log(creditCard);
-    
-    this.productService.addCreditCard(creditCard,"q@123").subscribe( reaponse =>console.log(reaponse));
   }
   onSubmitForPayment(payment:any){
-    console.log(payment);
+    
+    
+    if(this.rememberMe===true)
+    {
+        let creditCard={
+           creditCardNumber: this.ccNumber,
+           validTo:`${this.emNumber}/${this.eyNumber}`,
+            balance:5000
+        }
+    
+        this.productService.addCreditCard(creditCard,sessionStorage.getItem("sessionId")).subscribe( reaponse =>console.log(reaponse));
+    }
+    let foodArray:Array<string>=[];
+    for (let i = 0; i < localStorage.length; i++){
+      let key = localStorage.key(i);
+      let cartlist=JSON.parse(localStorage.getItem("cartList"));
+      if(key!="cartList")
+      {  const index = cartlist.findIndex(cart=> cart.name===key);
+        console.log(index)
+        foodArray.push(cartlist[index].foodId);
+      }
+     
+    }
+    let Order={ orderStatus:"Pending",
+	
+    Street:this.OrderDetails.Street,
+    
+    city:this.OrderDetails.City,
+    
+    state:this.OrderDetails.State,
+    
+    pincode:this.OrderDetails.Pincode,
+    
+    mobileNo:Number(this.OrderDetails.MobileNumber)
+    }
+   this.productService.placeOrder(sessionStorage.getItem("sessionId"),Order,foodArray,this.totalPrice).subscribe(result=>{console.log(result); 
+    let jsonfile=JSON.parse(JSON.stringify(result));
+    if((jsonfile.city)==="")
+    {
+      this.notifier.notify("info", jsonfile.orderStatus);
+    }
+    else{
+      this.notifier.notify("success","Order Placed Successfully");
+    }
+    this.emptyLocalStorage()});
+    
+
+  }
+
+
+  emptyLocalStorage()
+  {
+    localStorage.clear();
+    
   }
 
   getCreditCardNumber(){
-    this.productService.getAllCreditCardOfUser("a@123").subscribe(reaponse =>{console.log(reaponse) ;this.creditCardList=reaponse});
+    this.productService.getAllCreditCardOfUser(sessionStorage.getItem("sessionId")).subscribe(reaponse =>{console.log(reaponse) ;this.creditCardList=reaponse});
       
   }
   handleClick(creditCardObj){
@@ -52,6 +102,16 @@ export class orderAndPayment{
     let split=String(creditCardObj.validTo).split("/");
     this.emNumber=split[0];
     this.eyNumber=split[1];
+  }
+  ngOnInit()
+  {
+   this.route.params.subscribe(params => {
+      this.params(params['price'])
+      });
+  }
+  params(value)
+  {
+      this.totalPrice=value
   }
 
 }

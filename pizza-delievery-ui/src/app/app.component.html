@@ -1,6 +1,5 @@
 
-<!--
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" style="position: sticky" *ngIf="flag">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -15,21 +14,18 @@
         <li >
           <a class="nav-link" routerLink="/homepage">Home</a>
         </li>
-        <li>
-          <a class="nav-link" href="#menu">Menu</a>
-        </li>
+       
         <li>
           <a  routerLink="/cart">Cart</a>
         </li>
         <ul class="nav navbar-nav navbar-right">
-          <li><a  routerLink="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li><a  routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
       </ul>
     </div>
   </div>
 </nav>
-<-->
-<nav class="navbar navbar-inverse" style="position: sticky">
+<nav class="navbar navbar-inverse" style="position: sticky"*ngIf="flag1">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -45,9 +41,6 @@
           <a class="nav-link" routerLink="/homepage">Home</a>
         </li>
         <li>
-          <a class="nav-link" routerLink="/login" >Menu</a>
-        </li>
-        <li>
           <a routerLink="/cart">Cart</a>
         </li>
         <li>
@@ -56,8 +49,7 @@
           </button>
           <ul class="dropdown-menu">
             <li><a routerLink="/profile">Profile</a></li>
-            <li><a href="#">Orders</a></li>
-            <li><a href="#">Sign Out</a></li>
+            <li><a href="#" (click)="logout()">Sign Out</a></li>
           </ul>
         </li>
       </ul>

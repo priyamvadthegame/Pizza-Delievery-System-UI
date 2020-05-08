@@ -32,7 +32,7 @@
 						<tr *ngFor="let f of food ; let i=index">
 							<td data-th="Product">
 								<div class="row">
-									<div class="col-sm-2 hidden-xs"><img src="../assets/food-order-logo.jpg" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-2 hidden-xs"><img src="../../assets/images//food-order-logo.jpg" alt="..." class="img-responsive"/></div>
 									<div class="col-sm-10">
                                         <p class="nomargin" style="font-size: large;">{{f.name}} </p>
 										
@@ -67,7 +67,7 @@
 							<td><a  routerLink="/homepage"class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 							<td colspan="2" class="hidden-xs"></td>
 							<td class="hidden-xs text-center"><strong>Total Rs. {{total}}</strong></td>
-							<td><a href="/order" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+							<td><a [routerLink]="['/cart/order',total]" (click)="checkOutButton()"class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
 						</tr>
 					</tfoot>
 				</table>

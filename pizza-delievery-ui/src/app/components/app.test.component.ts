@@ -3,6 +3,7 @@ import {ProductService} from '../services/project.services'
 import {Cart} from '../pojo classes/cartPojo'
 import {Store} from '../pojo classes/store'
 import { NotifierService } from "angular-notifier";
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'test',
   templateUrl: `app.dynamicfoodcontents.html`,
@@ -20,7 +21,7 @@ export class TestComponent implements OnInit {
   public cartList:Array<Cart>=[];
   public storeArray:Array<Store>=[];
   public show=false;
-  constructor(private productService:ProductService,private notifierService: NotifierService)
+  constructor(private productService:ProductService,private notifierService: NotifierService,private rout:Router)
   {   /*
       this.testData=productService.addCreditCard({creditCardNumber:20331052563,
         validFrom:"04/30",
@@ -38,40 +39,49 @@ export class TestComponent implements OnInit {
   }
 
   addtocart(food)
-  { console.log(food)
-    if(localStorage.length>0)
-    { 
-      let cartlist=JSON.parse(localStorage.getItem("cartList"));
-      const index = cartlist.findIndex(cart=> cart.foodId ===food.id);
-        if (index >-1) {
-          
-          this.notifierService.notify("info", "Item Already Added to cart");
-      }
-      else{
-        
-        cartlist.push(new Cart(food.foodName,food.id,1,food.price));
-        for(let store in this.storeList)
-        {
-            this.storeArray.push(new Store(this.storeList[store].storeName,this.storeList[store].storeId,this.storeList[store].storeStreet))
+{ 
+  
+  if(sessionStorage.length>1)
+  {
+      console.log(food)
+          if(localStorage.length>0)
+          { 
+          let cartlist=JSON.parse(localStorage.getItem("cartList"));
+          const index = cartlist.findIndex(cart=> cart.foodId ===food.id);
+            if (index >-1) {
+              
+              this.notifierService.notify("info", "Item Already Added to cart");
+          }
+          else{
+            
+            cartlist.push(new Cart(food.foodName,food.id,1,food.price));
+            for(let store in this.storeList)
+            {
+                this.storeArray.push(new Store(this.storeList[store].storeName,this.storeList[store].storeId,this.storeList[store].storeStreet))
+            }
+            localStorage.setItem("cartList",JSON.stringify(cartlist));
+            localStorage.setItem(food.foodName,JSON.stringify(this.storeArray))
+            this.notifierService.notify("success", "Item Added to Cart");
+          }
         }
-        localStorage.setItem("cartList",JSON.stringify(cartlist));
+      else{
+      
+        this.cartList.push(new Cart(food.foodName,food.id,1,food.price));
+        for(let store in this.storeList)
+          {
+              this.storeArray.push(new Store(this.storeList[store].storeName,this.storeList[store].storeId,this.storeList[store].storeStreet))
+          }
+        localStorage.setItem("cartList",JSON.stringify(this.cartList));
         localStorage.setItem(food.foodName,JSON.stringify(this.storeArray))
         this.notifierService.notify("success", "Item Added to Cart");
-      }
-    }
-    else{
-     
-      this.cartList.push(new Cart(food.foodName,food.id,1,food.price));
-      for(let store in this.storeList)
-        {
-            this.storeArray.push(new Store(this.storeList[store].storeName,this.storeList[store].storeId,this.storeList[store].storeStreet))
         }
-      localStorage.setItem("cartList",JSON.stringify(this.cartList));
-      localStorage.setItem(food.foodName,JSON.stringify(this.storeArray))
-      this.notifierService.notify("success", "Item Added to Cart");
       }
     
+    else
+    {
+      this.notifierService.notify("info", "Please Login to continue");
     }
+  }
     getStoresOfAParticularFood(food)
     { 
     
@@ -88,8 +98,7 @@ export class TestComponent implements OnInit {
       this.productService.getFoodProducts().subscribe((foodList)=>{this.foodList=foodList
         console.log(foodList);
       })
-     
       
-  }
+    }
 }
 

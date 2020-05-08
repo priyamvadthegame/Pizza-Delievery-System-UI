@@ -6,7 +6,7 @@
   <body>
     <div class="container-fluid" >
       <div class="row price"  align="center">
-          <h1>Total Price : &#x20b9; </h1>
+          <h1>Total Price : &#x20b9; {{totalPrice}} </h1>
       </div>
       <div class="row" >
         <div class="col-md-4 col-xs-12 orderform" >
@@ -62,7 +62,7 @@
 
         <div class="form-group" [class.has-error]="mobileNoModelRef.invalid && mobileNoModelRef.touched">
           <p>Mobile Number</p>
-          <input type="text" class="form-control" name="Mobile number" pattern="^(0|[1-9][0-9]*)" title="Phone Number should be numeric." required minlength="10" maxlength="10" placeholder="Enter your Mobile " required  #mobileNo #mobileNoModelRef="ngModel" ngModel/>
+          <input type="text" class="form-control" name="MobileNumber" pattern="^(0|[1-9][0-9]*)" title="Phone Number should be numeric." required minlength="10" maxlength="10" placeholder="Enter your Mobile " required  #mobileNo #mobileNoModelRef="ngModel" ngModel/>
           <div *ngIf="mobileNoModelRef.errors && mobileNoModelRef.touched" class="alert alert-danger">
           <div [hidden]="!mobileNoModelRef.errors.required" class="alert alert-danger">Please Enter Mobile.</div>
           <div [hidden]="!mobileNoModelRef.errors.minlength" class="alert alert-danger">Mobile Number must be of 10 digits.</div>
@@ -134,7 +134,7 @@
      
             
             <div class="btn-block">
-              <button [disabled]="!payment.form.valid" type="submit" class="btn btn-primary">Pay & Place Order</button>
+              <button [disabled]="!payment.form.valid"  type="submit" class="btn btn-primary">Pay & Place Order</button>
             </div>
 
           </form>

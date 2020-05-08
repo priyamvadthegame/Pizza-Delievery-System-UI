@@ -16,12 +16,24 @@ import {UserProfleComponent} from "./components/profile_components/app.profile"
 import { ReactiveFormsModule } from '@angular/forms'
 import {orderAndPayment} from './components/order component/orderAndPayment.component'
 import {FilterDetails} from './pipes/credicarPipe'
+import { AdminAddItemComponent } from './components/admincomponents/adminadditem.component';
+import { AdminDeleteItemComponent } from './components/admincomponents/admindeleteitem.component';
+import { AdminDeleteStoreComponent } from './components/admincomponents/admindeletestore.component';
+import { AdminAddStoreComponent } from './components/admincomponents/adminaddstore.component';
+import { AdminPageComponent } from './components/admincomponents/adminpage.component';
+import {TableBorderedComponent} from './components/admincomponents/foodview'
+import { StoreViewComponent} from './components/admincomponents/Storeview'
+import {AdminUpdateItemComponent} from './components/admincomponents/adminupdateitem.component'
 @NgModule({
   declarations:[
     AppComponent,TestComponent,
     CartComponent,LoginComponent,
     RegisterComponent,UserProfleComponent,
-    orderAndPayment,FilterDetails
+    orderAndPayment,FilterDetails,LoginComponent,
+    AdminAddItemComponent,AdminDeleteItemComponent,
+    AdminDeleteStoreComponent,AdminAddStoreComponent,
+    AdminPageComponent,TableBorderedComponent,
+    StoreViewComponent,AdminUpdateItemComponent
   ],
   imports: [
     BrowserModule,

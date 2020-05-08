@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ProductService } from '../services/project.service';
+import { ProductService } from '../services/project.services';
 
 @Component({
     selector: 'user-profile',
@@ -50,7 +50,7 @@ export class UserProfleComponent{
         console.log(this.userProfileForm.value);
     }
     ngOnInit(){
-        this.userService.viewProfile("a@123").subscribe((user)=>{this.user=user;this.Init()});
+        this.userService.viewProfile(sessionStorage.getItem("sessionId")).subscribe((user)=>{this.user=user;this.Init()});
     }
     Init(){
         console.log(this.user);

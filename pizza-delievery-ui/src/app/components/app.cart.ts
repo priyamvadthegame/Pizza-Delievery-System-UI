@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../services/project.services';
 import {FormsModule} from '@angular/forms';
 import {Cart} from '../pojo classes/cartPojo'
-
-
+import { NotifierService } from "angular-notifier";
+import { Router} from '@angular/router'
 @Component({
   selector: 'cart',
   templateUrl: 'app.cart.component.html'
@@ -15,7 +15,8 @@ export class CartComponent implements OnInit {
   //cartList: Array<Cart> = [];
   quant:string;
   total:number=0;
-  constructor(private productService:ProductService) {
+  constructor(private productService:ProductService,private notifier:NotifierService,private route:Router) {
+    
   }
  
   handleClick(food,i) {
@@ -62,6 +63,14 @@ ngOnInit()
 { 
   this.food=JSON.parse(localStorage.getItem("cartList"));
   this.food.forEach(foods=>this.total=this.total+foods.price*foods.quantity);
+}
+checkOutButton()
+{
+  if(localStorage.length<1||localStorage.getItem("cartList")==="[]")
+  {
+    this.notifier.notify("error","Cart is empity please add pizza to continue");
+    this.route.navigateByUrl("/cart");
+  }
 }
 
 }

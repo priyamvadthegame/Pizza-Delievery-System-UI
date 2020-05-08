@@ -19,15 +19,15 @@ export class ProductService{
 
        return this._httpClient.get('http://localhost:9090/myapp/food',{headers:this.httpHeaders});
    }
-   addFoodProducts(productObj): Observable<Object>{
+   addFoodProducts(productObj,sessionId:string): Observable<Object>{
     
-        return this._httpClient.post('http://localhost:9090/myapp/food',JSON.stringify(productObj),{headers:this.httpHeaders});
-    }
+    return this._httpClient.post('http://localhost:9090/myapp/food',JSON.stringify(productObj),{headers:this.httpHeaders.set('auth-token',sessionId)});
+}
     updateFoodProducts(id,productObj): Observable<Object>{
         return this._httpClient.put(`http://localhost:9090/myapp/food/${id}`,JSON.stringify(productObj),{headers:this.httpHeaders});
     }
-    deleteFoodProducts(id):Observable<Object>{
-        return this._httpClient.delete('http://localhost:9090/myapp/food/${id}',{headers:this.httpHeaders});
+    deleteFoodProducts(id,sessionId:string):Observable<Object>{
+        return this._httpClient.delete(`http://localhost:9090/myapp/food/${id}`,{headers:this.httpHeaders.set('auth-token',sessionId)});
     }
     //deeptansu
     
@@ -51,11 +51,11 @@ export class ProductService{
     //pratyush
     updateUserProfile(UserProfileObj,sessionId:string):Observable<Object>
     {   
-        return this._httpClient.put('http://localhost:9090/myapp/user/uprofile',JSON.stringify(UserProfileObj),{headers:this.httpHeaders.set('authToken',sessionId)});
+        return this._httpClient.put('http://localhost:9090/myapp/user/uprofile',JSON.stringify(UserProfileObj),{headers:this.httpHeaders.set('auth-token',sessionId)});
     }
     changeUserPassword(oldpassword:string,newpassword:string,sessionId:string)
-    {
-        return this._httpClient.post('http://localhost:9090/myapp/user/pass',{headers:this.httpHeaders.set('authToken',sessionId),params:{'oldpassword':oldpassword,'newpassword':newpassword}});
+    {   console.log(oldpassword,newpassword)
+        return this._httpClient.post('http://localhost:9090/myapp/user/pass',{},{headers:this.httpHeaders.set('auth-token',sessionId),params:{'oldpassword':oldpassword,'newpassword':newpassword}});
     }
     
     addItemToCart(CartObj,sessionId:string,foodId:string):Observable<Object>
@@ -122,7 +122,7 @@ export class ProductService{
     }
 
     deleteStore(storeId) :Observable<Object>{
-        return this._httpClient.delete('http://localhost:9090/myapp/store/${id}',{headers:this.httpHeaders ,params:{'storeId':storeId}});
+        return this._httpClient.delete(`http://localhost:9090/myapp/store/${storeId}`,{headers:this.httpHeaders });
     }
 
     registerStore(storeObj): Observable<Object>{
@@ -136,7 +136,7 @@ export class ProductService{
 
     //suraj
 
-    placeOrder(sessionId:string,orderJson:Object)
+    placeOrder(sessionId:string,orderJson:Object,foodArray:Array<string>,totalPrice)
     {  // let foodArray:Array<string>;
         //let cartList=JSON.parse(localStorage.getItem("cartList"))
         //let totalPrice;
@@ -146,7 +146,7 @@ export class ProductService{
        // });
        let foodsList:Array<string>=[];
        foodsList.push("1");
-        return this._httpClient.post('http://localhost:9090/myapp/food/order',JSON.stringify(orderJson),{headers:this.httpHeaders.set('authToken',sessionId),params:{'foods':["1","2"],'totalprice':"500",'storeId':"5"}});
+        return this._httpClient.post('http://localhost:9090/myapp/food/order',JSON.stringify(orderJson),{headers:this.httpHeaders.set('authToken',sessionId),params:{'foods':foodArray,'totalprice':totalPrice,'storeId':"5"}});
     }
     getOrder(sessionId:string,cartId:string,orderJson)
     {

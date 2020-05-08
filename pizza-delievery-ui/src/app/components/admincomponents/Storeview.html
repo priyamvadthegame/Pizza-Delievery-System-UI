@@ -1,0 +1,35 @@
+<div class="center">
+    <h1>Store Details</h1>
+  </div>
+<table id="customers" mdbTable bordered="true">
+   
+  
+    <tbody *ngFor="let food of foodList">
+      <tr >
+        <td>
+          {{food.storeId}}
+        </td>
+        <td>
+          {{food.storeName}}                          
+        </td>
+        <td>
+          {{food.storeMobileNo}}
+        </td>
+        <td>
+          {{food.storeStreet}}
+        </td>
+        <td>
+          {{food.storeCity}}
+        </td>
+        <td>
+          {{food.storeState}}
+        </td>
+        <td>
+          {{food.storePincode}}
+        </td>
+        
+
+      </tr>
+    </tbody>
+
+  </table>

@@ -1,0 +1,39 @@
+
+    <div class="col-md-7 col-sm-8 col-xs-12" align="center">
+      <form id="log">
+        <h1 id="formhead">Update Food Item Details</h1>
+
+        <div class="form-group">
+          <label>Food Id</label>
+          <input type="text" class="form-control" placeholder="Food Id" [(ngModel)]="id" name="id">
+        </div>
+
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" placeholder="Name" [(ngModel)]="name" name="name">
+            
+          </div>
+          <div class="form-group">
+            <label>Type</label>
+            <input type="text" class="form-control" placeholder="Type" [(ngModel)]="type" name="type">
+            
+          </div>
+          <div class="form-group">
+            <label>Food Size</label>
+            <input type="text" class="form-control" placeholder="Food Size" [(ngModel)]="size" name="size">
+            
+          </div>
+          <div class="form-group">
+            <label>Quantity</label>
+            <input type="text" class="form-control" placeholder="Quantity" [(ngModel)]="quantity" name="quantity">
+            
+          </div>
+          <div class="form-group">
+            <label>Price</label>
+            <input type="text" class="form-control" placeholder="Price" [(ngModel)]="price" name="price">
+          </div>  
+        <div class="form-group">
+          <a  class="btn btn-success" role="button" (click)="onClickUpdateItem()">Update</a>
+        </div>
+      </form>
+    </div>

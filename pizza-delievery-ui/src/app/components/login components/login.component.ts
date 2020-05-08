@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/project.services';
-
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -10,20 +10,30 @@ import { ProductService } from '../../services/project.services';
 
 export class LoginComponent implements OnInit 
 {
-    public LoginForm: any;
-    public res: any;
-    constructor (private productService: ProductService)
-    {
-        
-    }
-    onSubmit()
-    {
-        console.log(this.LoginForm.value);
+    constructor (private productService: ProductService,private route:Router) {
 
     }
-    ngOnInit()
+    onSubmit(LoginForm:any) 
     {
+        console.log(LoginForm);
+        this.productService.loginUser({"username": LoginForm.Username,"password": LoginForm.Password}).subscribe(
+            (response)=>{
+                   let obj= JSON.parse(JSON.stringify(response));
+                   console.log(obj.usertype)
+                   if(obj.usertype==='admin')
+                   {
+                    sessionStorage.setItem("sessionId",String(obj.authtoken));
+                    this.route.navigateByUrl("/adminhome")
+                   }
+                   else
+                   {
+                        sessionStorage.setItem("sessionId",String(obj.authtoken));
+                        sessionStorage.setItem("flag","login");
+                        this.route.navigate(['']);
+                   }
+            });
+    }
+    ngOnInit() {
 
     }
-
 }

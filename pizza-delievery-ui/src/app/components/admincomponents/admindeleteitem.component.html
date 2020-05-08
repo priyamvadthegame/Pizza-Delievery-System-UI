@@ -1,0 +1,17 @@
+
+    <div class="col-md-7 col-sm-8 col-xs-12" align="center">
+      <form id="log">
+        <h1 id="formhead">Delete a Food Item</h1>
+
+        <div class="form-group">
+          <label>Enter the Food Id</label>
+          <input type="text" class="form-control" placeholder="Food Id" [(ngModel)]="id" name="id">
+          
+        </div>
+        <div class="form-group">
+          <a  class="btn btn-danger" role="button" (click)="onClickDeleteItem()">Delete</a>
+        </div>
+      </form>
+    </div>
+
+  

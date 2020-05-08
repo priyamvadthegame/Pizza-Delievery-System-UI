@@ -10,69 +10,65 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container-fluid" style="padding: 0;
-margin-bottom: 0px;
-margin-top: -20px;">
-  <div class="row">
-    <div class="col-md-12 crousel" embed-responsive>
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
-      <li data-target="#myCarousel" data-slide-to="4"></li>
-    
-    </ol>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner " id="home" role="listbox">
-      <div class="item active">
-        <img src="https://wallpaperaccess.com/full/462773.jpg" alt="Image">
-        <div class="carousel-caption">
-        <!--<p>Text1</p> -->
-        </div>      
-      </div>
-
-      <div class="item">
-        <img src="https://images.wallpapersden.com/image/download/pizza-vegetables-baked-goods_51153_1920x1080.jpg" alt="Image">
-        <div class="carousel-caption">
-        <!--<p>Text1</p> -->
-        </div>      
-      </div>
-
-      <div class="item">
-        <img src="https://www.elsetge.cat/myimg/f/214-2140171_pizza-tumblr-wallpapers-background-pizza-and-pasta-hd.jpg" alt="Image">
-        <div class="carousel-caption">
-        <!--<p>Text1</p> -->
-        </div>      
-      </div>
-
-      <div class="item">
-        <img src="https://www.grcbowling.com/wp-content/uploads/2015/06/pizza.jpg" alt="Image">
-        <div class="carousel-caption">
-        <!--<p>Text1</p> -->
-        </div>      
-      </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-</div>
+  <div class="container-fluid" style="padding: 0;
+  margin-bottom: 0px;
+  margin-top: -20px;">
+    <div class="row">
+      <div class="col-md-12 crousel" embed-responsive>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+      
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner " id="home" role="listbox">
+        <div class="item active">
+          <img src="https://wallpaperaccess.com/full/462773.jpg" alt="Image">
+          <div class="carousel-caption">
+          <!--<p>Text1</p> -->
+          </div>      
+        </div>
   
-</div>
-</div>
-</div>
-
-<!--"https://i.pinimg.com/originals/00/1b/c0/001bc05aa7cc53b557077ddc40d8e493.jpg"-->
-
-
+        <div class="item">
+          <img src="https://images.wallpapersden.com/image/download/pizza-vegetables-baked-goods_51153_1920x1080.jpg" alt="Image">
+          <div class="carousel-caption">
+          <!--<p>Text1</p> -->
+          </div>      
+        </div>
+  
+        <div class="item">
+          <img src="https://www.elsetge.cat/myimg/f/214-2140171_pizza-tumblr-wallpapers-background-pizza-and-pasta-hd.jpg" alt="Image">
+          <div class="carousel-caption">
+          <!--<p>Text1</p> -->
+          </div>      
+        </div>
+  
+        <div class="item">
+          <img src="https://www.grcbowling.com/wp-content/uploads/2015/06/pizza.jpg" alt="Image">
+          <div class="carousel-caption">
+          <!--<p>Text1</p> -->
+          </div>      
+        </div>
+      </div>
+  
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+  </div>
+    
+  </div>
+  </div>
+  </div>
 
 <div class="container" >
   <h3 id="menu">Menu</h3><br>
@@ -92,7 +88,7 @@ margin-top: -20px;">
         <mdb-card-body class="typeprice">
           <!--Title-->
           <mdb-card-title>
-            <h4>{{food.foodName}}({{food.foodSize}})</h4>
+            <h4>{{food.foodName}}(&#x20b9;{{food.price}})</h4>
           </mdb-card-title>
       
           <!--Text-->
@@ -117,10 +113,8 @@ margin-top: -20px;">
     </div>
   </div>
 </div>
-<footer class="container-fluid text-center">
-  <p>Pizza Delivery System</p>
-    <br>
-    <p>Developed By:<p>
+<footer class="container-fluid text-center footer">
+  <p>Developed By: Team 4</p> 
 
 </footer>
 
