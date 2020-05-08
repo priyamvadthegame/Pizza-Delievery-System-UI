@@ -35,10 +35,18 @@ export class orderAndPayment implements OnInit{
   }
   onSubmitForPayment(payment:any){
     
-    
-    if(this.rememberMe===true)
-    {
-        let creditCard={
+    console.log()
+    console.log(this.ccNumber)
+    const index=this.creditCardList.findIndex(credit=>String(credit.creditCardNumber)===String(this.ccNumber))
+    console.log(index)
+      if(index===-1)  
+      {
+        this.notifier.notify("error","Incorect credit card number");
+      }
+      else{
+        if(this.rememberMe===true)
+        {
+      let creditCard={
            creditCardNumber: this.ccNumber,
            validTo:`${this.emNumber}/${this.eyNumber}`,
             balance:5000
@@ -79,7 +87,7 @@ export class orderAndPayment implements OnInit{
       this.notifier.notify("success","Order Placed Successfully");
     }
     this.emptyLocalStorage()});
-    
+  }
 
   }
 
